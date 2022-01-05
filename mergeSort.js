@@ -3,12 +3,12 @@ const array = [38, 27, 24, 56, 12, 32, 16, 11, 15, 25, 29];
 
 /*
 call stack
-merge(mergeSort([38, 27, 24, 56, 12]), mergeSort([32, 16, 11, 15, 25, 29]))
+merge( mergeSort([38, 27, 24, 56, 12]), mergeSort([32, 16, 11, 15, 25, 29]) )
 merge( mergeSort([38, 27]), mergeSort([24, 56, 12]) )
 merge( mergeSort([38]), mergeSort([27]) ) 
 merge( [38], [27] ) => return [27, 38]
 
-merge( mergeSort([24]), mergeSort([56, 12] )
+merge( mergeSort([24]), mergeSort([56, 12]) )
 merge( mergeSort([56]), mergeSort([12]) )
 merge( [56], [12] ) => return [12, 56]
 merge( [24], [12, 56] ) => return [12, 24, 56]
