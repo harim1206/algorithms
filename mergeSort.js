@@ -25,15 +25,15 @@ function mergeSort (array) {
     return array;
   }
 
-  let middle = Math.floor(array.length/2);
-  let leftArr = array.slice(0, middle)
-  let rightArr = array.slice(middle)
+  const middle = Math.floor(array.length/2);
+  const leftArr = array.slice(0, middle)
+  const rightArr = array.slice(middle)
 
   return merge(mergeSort(leftArr), mergeSort(rightArr));
 }
 
 function merge(left, right) {
-  let merged = [];
+  const merged = [];
   let i = 0;
   let j = 0;
 
@@ -46,7 +46,6 @@ function merge(left, right) {
       j++;
     }
   }
-  console.log('merged: ', merged)
 
   return [...merged, ...left.slice(i), ...right.slice(j)];
 }
