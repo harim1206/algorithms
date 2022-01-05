@@ -13,7 +13,7 @@ merge( mergeSort([56]), mergeSort([12]) )
 merge( [56], [12] ) => return [12, 56]
 merge( [24], [12, 56] ) => return [12, 24, 56]
 
-merge( [27, 38], [12, 24, 56] ) => return [12, 24, 27, 38, 56]
+merge( [27, 38], [12, 24, 56] ) => return [12, 24, 27, 38, 56] 
 
 */
 
