@@ -1,2 +1,5 @@
 const mergeSort = require('./mergeSort')
-mergeSort.init()
+const twoSum = require('./twoSum')
+
+// mergeSort.init()
+twoSum.init()
