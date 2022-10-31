@@ -11,31 +11,27 @@
 
 */
 
-const nums = [2,7,11,15]
-const target = 9
+const nums = [2, 7, 11, 15];
+const target = 9;
 
-function twoSum (nums, target) {  
-  const map = new Map();
+function twoSum(nums, target) {
+  let map = new Map();
 
-  for(let i = 0; i < nums.length; i++) {
-    
-    // 1. create a map using the element as key, and index as value
-    map.set(nums[i], i)
-    const pair = target - nums[i];
-    const pairIndex = map.get(pair)
-    
-    // 2. for each number in nums, see if map[target-number] exists. but the indices of the two nubmers cannot be the same
-    // If true, return the two indices
-    if(map.has(pair)) return [i, pairIndex];
-
+  for (let i = 0; i < nums.length; i++) {
+    if (map.has(target - nums[i])) {
+      return [map.get(target - nums[i]), i];
+    } else {
+      map.set(nums[i], i);
+    }
   }
 
-  return false;
-
+  return [];
 }
 
-function init () {
-  console.log(twoSum(nums, target))
+console.log(twoSum(nums, target));
+
+function init() {
+  console.log(twoSum(nums, target));
 }
 
-module.exports = { init }
+module.exports = { init };

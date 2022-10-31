@@ -14,7 +14,7 @@ function containsDuplicate(arr) {
 
 function init() {
   console.log(containsDuplicate(arr));
-}
+} 
 
 module.exports = { init }
 

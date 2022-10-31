@@ -1,37 +1,38 @@
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
+
+/*
 
 function promiseAll(promises) {
   const outputs = [];
   let settledPromiseCounter = 0;
 
   return new Promise((resolve, reject) => {
-
     promises.forEach((promise, i) => {
-
-      promise.then(value => {
-        outputs[i] = value
-        settledPromiseCounter++
-        if(settledPromiseCounter === promises.length) {
-          resolve(outputs)
-        }
-      })
-      .catch(reject)
-
-    })
-
-  })
-
+      promise
+        .then((value) => {
+          outputs[i] = value;
+          settledPromiseCounter++;
+          if (settledPromiseCounter === promises.length) {
+            resolve(outputs);
+          }
+        })
+        .catch(reject);
+    });
+  });
 }
 
 const promises = [
-  fetch('https://swapi.dev/api/people/1/'),
-  fetch('https://swapi.dev/api/people/2/'),  
-  fetch('https://swapi.dev/api/people/3/'),  
-]
+  fetch("https://swapi.dev/api/people/1/"),
+  fetch("https://swapi.dev/api/people/2/"),
+  fetch("https://swapi.dev/api/people/3/"),
+];
 
 promiseAll(promises)
-.then( outputs => promiseAll(outputs.map(r => r.json())) )
-.then( outputs => console.log('outputs: ', outputs))
+  .then((outputs) => promiseAll(outputs.map((r) => r.json())))
+  .then((outputs) => console.log("outputs: ", outputs));
+
+
+  */
 
 // Promise.all([fetch1, ... fetchX])
 //   .then(results => Promise.all(results.map(r => r.json())) )
@@ -44,7 +45,6 @@ promiseAll(promises)
 // .then(data => {
 //   console.log('data: ', data)
 // })
-
 
 /*
 // get file example
@@ -92,3 +92,48 @@ fetch('test')
 // The arg in resolve(arg), is the arg in .then(arg => arg)
 
 */
+
+// const promise = new Promise((resolve, reject) => {
+//   if (true) resolve("hello");
+//   if (false) reject("error");
+// });
+
+function promiseAll(promises) {
+  /*
+    takes in an array of promises
+    returns an array of resolved values of the promises
+    resolve once all of the consumed promises are resolved
+    reject if any of the promises reject
+  */
+
+  const outputs = new Array(promises.length);
+  let fulfilledCounter = 0;
+
+  return new Promise((resolve, reject) => {
+    for (let i = 0; i < promises.length; i++) {
+      const promise = promises[i];
+
+      promise
+        .then((res) => {
+          outputs[i] = res;
+          fulfilledCounter++;
+
+          if (fulfilledCounter === promises.length) resolve(outputs);
+        })
+        .catch(reject);
+    }
+  });
+}
+
+// const promises = [
+//   fetch("https://swapi.dev/api/people/1/"),
+//   fetch("https://swapi.dev/api/people/2/"),
+//   fetch("https://swapi.dev/api/people/3/"),
+// ];
+
+const promises = [Promise.resolve(2)];
+
+// promiseAll(promises)
+//   .then((outputs) => promiseAll(outputs.map((r) => r.json())))
+//   .then((outputs) => console.log("outputs: ", outputs));
+promiseAll(promises).then(console.log);
